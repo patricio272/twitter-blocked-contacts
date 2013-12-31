@@ -52,7 +52,8 @@ if(isset($_GET['oauth_token']))
 }
 else //Error. redirect to Login Page.
 {
-	header('Location: index.php');
+	// header('Location: index.php');
+	echo "Error 'oauth_token' not set";
 
 }
 
