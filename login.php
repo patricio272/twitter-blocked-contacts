@@ -25,8 +25,8 @@ include('config.php');
 		$token = $request_token['oauth_token'];
 		// $_SESSION['request_token'] = $token ;
 		// $_SESSION['request_token_secret'] = $request_token['oauth_token_secret'];
-		setcookie("ut", $request_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
-		setcookie("ut_s", $request_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
+		setcookie("ut_tmp", $request_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
+		setcookie("ut_s_tmp", $request_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
 		
 		switch ($connection->http_code) 
 		{

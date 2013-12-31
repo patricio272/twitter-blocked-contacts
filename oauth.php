@@ -9,19 +9,17 @@ if(isset($_GET['oauth_token']))
 {
 
 
-	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
+	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut_tmp'], $_COOKIE['ut_s_tmp']);
 	$access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
 	if($access_token)
 	{
-		// setcookie("oauth_token", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
-		// setcookie("oauth_token_secret", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
-		// $connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
+		//Delete temporal request_tokens
+		setcookie("ut_tmp", "", time()-3600,"/");
+		setcookie("ut_s_tmp", "", time()-3600,"/");
 
-		/* debug */
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
-		setcookie("ut_2", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
-		setcookie("ut_s_2", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
-		/* debug */
+		setcookie("ut", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
+		setcookie("ut_s", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
 
 		$params =array();
 		// $params['include_entities']='false';
