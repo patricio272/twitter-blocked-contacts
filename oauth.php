@@ -29,6 +29,10 @@ if(isset($_GET['oauth_token']))
 		//Set TYPE of request to the REST API
 		$content = $connection->get('blocks/list',$params);
 
+		echo "content:<br>";
+		print_r($content);
+		exit();
+
 		if($content)
 		{
 			// $_SESSION['name']=$content->name;
