@@ -1,7 +1,8 @@
 <?php
 session_start();
-if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
-	$list = $_SESSION['blocked_users'];
+if(isset($_COOKIE['u']) && $_COOKIE['ut_s'] != ''){
+	$list = $_COOKIE['list'];
+	//TODO : Save oauth_token and oauth_token_secret on DB, to use it later and stuff (permanency)
 	foreach ($list->users as $key => $value) {
 		$screen_name = $value->screen_name;
 		$profile_image_url = $value->profile_image_url;

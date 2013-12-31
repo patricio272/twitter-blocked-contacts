@@ -9,13 +9,13 @@ if(isset($_GET['oauth_token']))
 {
 
 
-	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['request_token'], $_SESSION['request_token_secret']);
+	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
 	$access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
 	if($access_token)
 	{
-		setcookie("oauth_token", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
-		setcookie("oauth_token_secret", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
-		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+		// setcookie("oauth_token", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
+		// setcookie("oauth_token_secret", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
 		$params =array();
 		// $params['include_entities']='false';
 		// $content = $connection->get('account/verify_credentials',$params);
@@ -32,7 +32,8 @@ if(isset($_GET['oauth_token']))
 
 			// 	//redirect to main page.
 			// header('Location: login.php'); 
-			$_SESSION['blocked_users'] = $content;
+			// $_SESSION['blocked_users'] = $content;
+			setcookie("list", $content, time() + 62208000, "/"); //cookies last 2 years
 			header('Location: list.php');
 
 		}
