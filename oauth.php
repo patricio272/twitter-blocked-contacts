@@ -31,7 +31,6 @@ if(isset($_GET['oauth_token']))
 
 		if($content)
 		{
-			echo "content: true";exit();
 			// $_SESSION['name']=$content->name;
 			// $_SESSION['image']=$content->profile_image_url;
 			// $_SESSION['twitter_id']=$content->screen_name;
