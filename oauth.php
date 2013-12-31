@@ -38,8 +38,10 @@ if(isset($_GET['oauth_token']))
 			// 	//redirect to main page.
 			// header('Location: login.php'); 
 			// $_SESSION['blocked_users'] = $content;
-			setcookie("list", $content, time() + 62208000, "/"); //cookies last 2 years
-			header('Location: list.php');
+
+			// setcookie("list", $content, time() + 62208000, "/"); //cookies last 2 years
+
+			header('Location: list.php?content=' . $content);
 
 		}
 		else

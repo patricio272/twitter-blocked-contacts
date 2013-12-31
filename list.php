@@ -1,6 +1,6 @@
 <?php
-if(isset($_COOKIE['list']) && $_COOKIE['list'] != ''){
-	$list = $_COOKIE['list'];
+if(isset($_GET['content']) && $_GET['content'] != ''){
+	$list = $_GET['content'];
 	//TODO : Save oauth_token and oauth_token_secret on DB, to use it later and stuff (permanency)
 	foreach ($list->users as $key => $value) {
 		$screen_name = $value->screen_name;
