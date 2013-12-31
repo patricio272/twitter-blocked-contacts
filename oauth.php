@@ -20,7 +20,7 @@ if(isset($_GET['oauth_token']))
 		/* debug */
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
 		setcookie("ut_2", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
-		setcookie("ut_s_2", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
+		setcookie("ut_s_2", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
 		/* debug */
 
 		$params =array();
