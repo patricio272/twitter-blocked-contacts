@@ -23,8 +23,10 @@ include('config.php');
 	if(	$request_token)
 	{
 		$token = $request_token['oauth_token'];
-		$_SESSION['request_token'] = $token ;
-		$_SESSION['request_token_secret'] = $request_token['oauth_token_secret'];
+		// $_SESSION['request_token'] = $token ;
+		// $_SESSION['request_token_secret'] = $request_token['oauth_token_secret'];
+		setcookie("oauth_token", $request_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
+		setcookie("oauth_token_secret", $request_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
 		
 		switch ($connection->http_code) 
 		{
