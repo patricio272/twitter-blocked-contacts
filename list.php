@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(isset($_COOKIE['list']) && $_COOKIE['list'] != ''){
 	$list = $_COOKIE['list'];
 	//TODO : Save oauth_token and oauth_token_secret on DB, to use it later and stuff (permanency)
