@@ -1,7 +1,7 @@
 <?php
-if(isset($_GET['content']) && $_GET['content'] != ''){
-	$list = $_GET['content'];
-	//TODO : Save oauth_token and oauth_token_secret on DB, to use it later and stuff (permanency)
+session_start();
+if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
+	$list = $_SESSION['blocked_users'];
 	foreach ($list->users as $key => $value) {
 		$screen_name = $value->screen_name;
 		$profile_image_url = $value->profile_image_url;
