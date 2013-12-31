@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Get Blocked Contacts</title>
+	<title>Get Blocked Contacts MOD</title>
 </head>
 <body>
 	<div align="center">
