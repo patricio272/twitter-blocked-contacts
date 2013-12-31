@@ -1,4 +1,5 @@
 <?php
+//This file gets the callback and works with it
 session_start();
 require_once('twitteroauth/twitteroauth.php');
 include('config.php');
@@ -12,6 +13,8 @@ if(isset($_GET['oauth_token']))
 	$access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
 	if($access_token)
 	{
+		setcookie("oauth_token", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
+		setcookie("oauth_token_secret", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
 		$params =array();
 		// $params['include_entities']='false';
