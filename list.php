@@ -1,7 +1,8 @@
 <?php
-require_once('./setup/config.php');
-require_once('./setup/connect.php');
-require_once('./setup/functions.php');
+require_once('twitteroauth/twitteroauth.php');
+require_once('setup/config.php');
+require_once('setup/connect.php');
+require_once('setup/functions.php');
 session_start();
 if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	//Getting requester user "screenname"

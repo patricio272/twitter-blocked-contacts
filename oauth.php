@@ -2,7 +2,7 @@
 //This file gets the callback and works with it
 session_start();
 require_once('twitteroauth/twitteroauth.php');
-include('./setup/config.php');
+include('setup/config.php');
 
 if(isset($_GET['oauth_token'])){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut_tmp'], $_COOKIE['ut_s_tmp']);
