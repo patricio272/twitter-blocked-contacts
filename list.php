@@ -4,8 +4,24 @@ require_once('./setup/connect.php');
 require_once('./setup/functions.php');
 session_start();
 if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
-	//TODO: Get requester user "screenname"
-	
+	//Getting requester user "screenname"
+
+	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
+	//Setting params for the request to the REST API
+	$params =array();
+	//Set TYPE of request to the REST API with setted "params"
+	$content = $connection->get('statuses/mentions_timeline',$params);
+
+	if($content){
+		print_r($content);
+		exit();
+	}
+	else
+	{
+		echo 'Cant get screen_name';
+		exit(-1);
+	}
+
 	//TODO: Save user oauth_token, oauth_token_secret on Heroku DB
 
 	$list = $_SESSION['blocked_users'];

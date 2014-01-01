@@ -3,12 +3,8 @@
 session_start();
 require_once('twitteroauth/twitteroauth.php');
 include('./setup/config.php');
-print_r($_GET);
-/*
-if(isset($_GET['oauth_token']))
-{
 
-
+if(isset($_GET['oauth_token'])){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut_tmp'], $_COOKIE['ut_s_tmp']);
 	$access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
 	if($access_token)
@@ -21,12 +17,13 @@ if(isset($_GET['oauth_token']))
 		setcookie("ut", $access_token['oauth_token'], time() + 62208000, "/"); //cookies last 2 years
 		setcookie("ut_s", $access_token['oauth_token_secret'], time() + 62208000, "/"); //cookies last 2 years
 
+		//Setting params for the request to the REST API
 		$params =array();
 		// $params['include_entities']='false';
 		// $content = $connection->get('account/verify_credentials',$params);
 		$params['include_entities']='false';
 		$params['cursor']=-1;
-		//Set TYPE of request to the REST API
+		//Set TYPE of request to the REST API with setted "params"
 		$content = $connection->get('blocks/list',$params);
 
 		if($content)
@@ -60,5 +57,5 @@ else //Error. redirect to Login Page.
 	echo "Error 'oauth_token' not set";
 
 }
-*/
+
 ?>
