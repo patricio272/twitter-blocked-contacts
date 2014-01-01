@@ -2,9 +2,9 @@
 //This file gets the callback and works with it
 session_start();
 require_once('twitteroauth/twitteroauth.php');
-include('config.php');
-
-
+include('./setup/config.php');
+print_r($_GET);
+/*
 if(isset($_GET['oauth_token']))
 {
 
@@ -60,5 +60,5 @@ else //Error. redirect to Login Page.
 	echo "Error 'oauth_token' not set";
 
 }
-
+*/
 ?>
