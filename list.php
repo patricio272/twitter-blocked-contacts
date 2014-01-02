@@ -15,7 +15,7 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	//Set TYPE of request to the REST API with setted "params"
 	$content = $connection->get('account/verify_credentials',$params);
 	//Link to login.php
-	echo '<a href="login.php"><img src="./img/blocked_twitter.png"/></a><hr>';
+	echo '<a href="login.php"><b>Check Blocked Contacts Again: </b><img src="./img/blocked_twitter.png"/></a><hr>';
 
 	if($content){
 		$requester_screen_name = $content->screen_name;
