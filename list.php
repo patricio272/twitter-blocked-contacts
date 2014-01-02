@@ -10,12 +10,14 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
 	//Setting params for the request to the REST API
 	$params =array();
+	$params['include_entities']='false';
 	//Set TYPE of request to the REST API with setted "params"
-	$content = $connection->get('statuses/mentions_timeline',$params);
-
+	$content = $connection->get('account/verify_credentials',$params);
 	if($content){
-		print_r($content);
-		exit();
+		echo $content->name . '<br>';
+		echo $content->screen_name . '<br>';
+		echo '<img src="' . $content->profile_image_url . '"><br>';
+		echo '<hr>';
 	}
 	else
 	{
@@ -23,7 +25,7 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 		exit(-1);
 	}
 
-	//TODO: Save user oauth_token, oauth_token_secret on Heroku DB
+	//TODO: Save user: screen_name, oauth_token, oauth_token_secret on Heroku DB
 
 	$list = $_SESSION['blocked_users'];
 	foreach ($list->users as $key => $value) {
