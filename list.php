@@ -14,6 +14,9 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	$params['include_entities']='false';
 	//Set TYPE of request to the REST API with setted "params"
 	$content = $connection->get('account/verify_credentials',$params);
+	//Link to login.php
+	echo '<a href="login.php"><img src="./img/blocked_twitter.png"/></a><hr>';
+	
 	if($content){
 		$requester_screen_name = $content->screen_name;
 		//Saving requester data (requester_screen_name, oauth_token, oauth_token_secret)
