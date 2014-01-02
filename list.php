@@ -16,7 +16,7 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	$content = $connection->get('account/verify_credentials',$params);
 	//Link to login.php
 	echo '<a href="login.php"><img src="./img/blocked_twitter.png"/></a><hr>';
-	
+
 	if($content){
 		$requester_screen_name = $content->screen_name;
 		//Saving requester data (requester_screen_name, oauth_token, oauth_token_secret)
@@ -33,8 +33,16 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 		exit(-1);
 	}
 
-	echo '<b>Your Twitter Blocked Contacts are:</b><br>';
 	$list = $_SESSION['blocked_users'];
+	//Check if the requester has no blocked contacts
+	if(count($list->users) == 0){
+		echo '<b>You have 0 blocked contacts!!! <br> Congratulations, you are a really social person!!</b>';
+		exit();
+	}
+	else{
+		echo '<b>You have ' . count($list->users) . ' blocked contacts:</b><br>';
+		echo '<b>Your Twitter Blocked Contacts are:</b><br>';
+	}
 	foreach ($list->users as $key => $value) {
 		$screen_name = $value->screen_name;
 		$profile_image_url = $value->profile_image_url;
