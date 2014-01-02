@@ -1,5 +1,8 @@
 <?php
 ini_set('display_errors', '1');
+require_once('twitteroauth/twitteroauth.php');
+require_once('setup/config.php');
+require_once('setup/connect.php');
 /**
 /* Saves requester screen_name, oauth_token, oauth_token_secret for later use (permanency) on DB
 /* @param string $requester_screen_name : Requester Screen Name
