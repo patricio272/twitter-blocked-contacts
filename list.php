@@ -14,8 +14,8 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	//Set TYPE of request to the REST API with setted "params"
 	$content = $connection->get('account/verify_credentials',$params);
 	if($content){
-		echo $content->name . '<br>';
-		echo $content->screen_name . '<br>';
+		echo '<h2>' . $content->name . '</h2><br>';
+		echo '<a href="http://www.twitter.com/' . $content->screen_name . '">@' . $content->screen_name . '</a><br>';
 		echo '<img src="' . $content->profile_image_url . '"><br>';
 		echo '<hr>';
 	}
@@ -27,6 +27,7 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 
 	//TODO: Save user: screen_name, oauth_token, oauth_token_secret on Heroku DB
 
+	echo '<b>Your Twitter Blocked Contacts are:</b><br>';
 	$list = $_SESSION['blocked_users'];
 	foreach ($list->users as $key => $value) {
 		$screen_name = $value->screen_name;
