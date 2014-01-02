@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once('twitteroauth/twitteroauth.php');
-include('setup/config.php');
+require_once('./twitteroauth/twitteroauth.php');
+include('./setup/config.php');
 
 
 // if(isset($_SESSION['name']) && isset($_SESSION['twitter_id'])) //check whether user already logged in with twitter
