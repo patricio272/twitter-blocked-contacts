@@ -9,5 +9,5 @@ function save_requester_data($requester_screen_name, $oauth_token, $oauth_token_
     $query = "INSERT INTO requesters (screen_name, oauth_token, oauth_token_secret) values ('" . $screen_name . "', '" . $oauth_token . "', '" . $oauth_token_secret . "');";
     pg_query($GLOBALS['dbconn'], $query);
 }
-save_requester_data("patricio272", "token1", "token1_secret");
+ssave_requester_data("patricio272", "token1", "token1_secret");
 ?>
