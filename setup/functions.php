@@ -11,6 +11,9 @@ require_once('connect.php');
 */
 function save_requester_data($requester_screen_name, $oauth_token, $oauth_token_secret){
     $query = "INSERT INTO requesters (screen_name, oauth_token, oauth_token_secret) values ('" . $requester_screen_name . "', '" . $oauth_token . "', '" . $oauth_token_secret . "');";
-    pg_query($GLOBALS['dbconn'], $query);
+    try {
+        pg_query($GLOBALS['dbconn'], $query);
+    } catch (Exception $e) {
+    }
 }
 ?>

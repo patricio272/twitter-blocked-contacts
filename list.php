@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', '1');
 require_once('./twitteroauth/twitteroauth.php');
 require_once('./setup/functions.php');
 session_start();
@@ -18,7 +19,7 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 
 	if($content){
 		$requester_screen_name = $content->screen_name;
-		//Saving requester data (requester_screen_name, oauth_token, oauth_token_secret)
+		//Saving requester data (requester_screen_name, oauth_token, oauth_token_secret) to DB
 		save_requester_data($requester_screen_name, $oauth_token, $oauth_token_secret);
 		//Displaying requester info
 		echo '<h2>' . $content->name . '</h2><br>';
