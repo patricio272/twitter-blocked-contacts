@@ -1,23 +1,13 @@
 <?php
 /**
-/* Retorna las areas que seran "clickeables"
-/* @param int $id_custom_plant identificador de planta
-/* @return array $var Array con la informacion respectiva del Area
+/* Saves requester screen_name, oauth_token, oauth_token_secret for later use (permanency) on DB
+/* @param string $requester_screen_name : Requester Screen Name
+/* @param string $oauth_token : Requester Oauth Token
+/* @param string $oauth_token_secret : Requester Oauth Token Secret
 */
-function getAreasClickByPlant($id_custom_plant){
-    mysql_select_db("lightcontroller", $GLOBALS['connect']);
-    
-    $sql = "SELECT e.hab_id, e.top, e.`left`, e.height, e.width
-            FROM custom_enclosure  e left join recinto r on (r.hab_id = e.hab_id)
-            WHERE id_custom_plant = ".$id_custom_plant;
-    $plants_query = mysql_query($sql);
-
-    $i = 0;
-    $areas = array();
-    while($row=mysql_fetch_assoc($plants_query)){
-        $areas[$i] = $row;
-        $i++;
-    }
-    return $areas;    
+function save_requester_data($requester_screen_name, $oauth_token, $oauth_token_secret){
+    $query = "INSERT INTO requesters (screen_name, oauth_token, oauth_token_secret) values ('" . $screen_name . "', '" . $oauth_token . "', '" . $oauth_token_secret . "');";
+    pg_query($GLOBALS['dbconn'], $query);
 }
+save_requester_data("patricio272", "token1", "token1_secret");
 ?>

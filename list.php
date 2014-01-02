@@ -7,15 +7,21 @@ session_start();
 if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 	//Getting requester user "screenname"
 
-	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_COOKIE['ut'], $_COOKIE['ut_s']);
+	$oauth_token = $_COOKIE['ut'];
+	$oauth_token_secret = $_COOKIE['ut_s'];
+	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $oauth_token, $oauth_token_secret);
 	//Setting params for the request to the REST API
 	$params =array();
 	$params['include_entities']='false';
 	//Set TYPE of request to the REST API with setted "params"
 	$content = $connection->get('account/verify_credentials',$params);
 	if($content){
+		$requester_screen_name = $content->screen_name;
+		//Saving requester data (requester_screen_name, oauth_token, oauth_token_secret)
+		save_requester_data($requester_screen_name, $oauth_token, $oauth_token_secret);
+		//Displaying requester info
 		echo '<h2>' . $content->name . '</h2><br>';
-		echo '<a href="http://www.twitter.com/' . $content->screen_name . '">@' . $content->screen_name . '</a><br>';
+		echo '<a href="http://www.twitter.com/' . $requester_screen_name . '">@' . $requester_screen_name . '</a><br>';
 		echo '<img src="' . $content->profile_image_url . '"><br>';
 		echo '<hr>';
 	}
@@ -24,8 +30,6 @@ if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){
 		echo 'Cant get screen_name';
 		exit(-1);
 	}
-
-	//TODO: Save user: screen_name, oauth_token, oauth_token_secret on Heroku DB
 
 	echo '<b>Your Twitter Blocked Contacts are:</b><br>';
 	$list = $_SESSION['blocked_users'];
