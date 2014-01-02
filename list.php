@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', '1');
+require_once('./twitteroauth/twitteroauth.php');
 require_once('./setup/functions.php');
 session_start();
 if(isset($_SESSION['blocked_users']) && $_SESSION['blocked_users'] != ''){

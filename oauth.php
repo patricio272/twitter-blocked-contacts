@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', '1');
 //This file gets the callback and works with it
 session_start();
 require_once('./twitteroauth/twitteroauth.php');
